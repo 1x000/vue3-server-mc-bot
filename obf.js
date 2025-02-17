@@ -1,4 +1,3 @@
-// obf.js (或 vite-plugin-obfuscator.js)
 import JavaScriptObfuscator from 'javascript-obfuscator';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -9,28 +8,34 @@ import path from 'node:path';
 export function obfuscator(options) {
     return {
         name: 'vite-plugin-obfuscator',
-        apply: 'build', // 只在构建时应用
+        apply: 'build',
         async closeBundle() {
-            const outputPath = 'dist'; // 默认的 Vite 构建输出目录
+            const outputPath = 'dist';
             const obfuscatorOptions = {
-                compact: true,
-                controlFlowFlattening: false, // 关闭控制流平坦化
-                deadCodeInjection: false, // 关闭死代码注入
-                debugProtection: false, // 关闭debug保护
-                disableConsoleOutput: false, // 允许console输出
+                compact: true, // 保持启用
+                controlFlowFlattening: true,
+                renameGlobals: true,
+                transformObjectKeys: true,
+                unicodeEscapeSequence: true,
+                optionsPreset: 'low-obfuscation', // 使用官方低混淆预设
+                deadCodeInjection: true,
+                debugProtection: true,
+                disableConsoleOutput: true,
                 identifierNamesGenerator: 'hexadecimal',
-                renameGlobals: false, // 关闭全局重命名
+                numbersToExpressions: true,
                 rotateStringArray: true,
+                selfDefending: true,
                 shuffleStringArray: true,
+                splitStrings: true,
                 stringArray: true,
-                stringArrayEncoding: [], // 关闭字符串数组编码
-                splitStrings: false, // 关闭字符串拆分
-                unicodeEscapeSequence: false, // 关闭unicode转义序列
-                ...options, // 允许在 vite.config.js 中覆盖某些选项
+                stringArrayIndexShift: true,
+                stringArrayRotate: true,
+                stringArrayShuffle: true,
+                stringArrayThreshold: 0.1,
+                ...options,
             };
 
             try {
-                // 递归读取所有 js 文件
                 const jsFiles = await readdirRecursive(outputPath);
                 for (const filePath of jsFiles) {
                     const absolutePath = path.resolve(outputPath, filePath);
