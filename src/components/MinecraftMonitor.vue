@@ -163,7 +163,7 @@ export default {
     };
 
     onMounted(() => {
-      socket.value = new WebSocket('ws://localhost:8080');
+      socket.value = new WebSocket('ws://ck3c.xpdbk.com');
 
       socket.value.onopen = () => {
         console.log('WebSocket 连接已建立');
@@ -270,7 +270,7 @@ export default {
         this.ws.close();
       }
 
-      this.ws = new WebSocket('ws://localhost:8080'); // 确保端口匹配
+      this.ws = new WebSocket('ws://ck3c.xpdbk.com'); // 确保端口匹配
 
       this.ws.onopen = () => {
         console.log('WebSocket connected');
