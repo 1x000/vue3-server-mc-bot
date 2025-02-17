@@ -14,44 +14,18 @@ export function obfuscator(options) {
             const outputPath = 'dist'; // 默认的 Vite 构建输出目录
             const obfuscatorOptions = {
                 compact: true,
-                controlFlowFlattening: true,
-                controlFlowFlatteningThreshold: 1,
-                deadCodeInjection: true,
-                deadCodeInjectionThreshold: 1,
-                debugProtection: true,
-                // debugProtectionInterval: 0, // 删除或注释掉，让 obfuscator 自己处理
-                disableConsoleOutput: true,
-                domainLock: [],
-                domainLockRedirectUrl: 'about:blank',
-                forceTransformStrings: [],  // 如果需要强制转换某些字符串，请谨慎使用
+                controlFlowFlattening: false, // 关闭控制流平坦化
+                deadCodeInjection: false, // 关闭死代码注入
+                debugProtection: false, // 关闭debug保护
+                disableConsoleOutput: false, // 允许console输出
                 identifierNamesGenerator: 'hexadecimal',
-                identifiersPrefix: '',
-                ignoreImports: false,
-                inputFileName: '',
-                log: false,
-                numbersToExpressions: true,
-                optionsPreset: 'high-obfuscation', // 关键：设置为 high-obfuscation
-                renameGlobals: true,      // 开启全局重命名
+                renameGlobals: false, // 关闭全局重命名
                 rotateStringArray: true,
-                seed: 0,
-                selfDefending: true,
                 shuffleStringArray: true,
-                splitStrings: true,
-                splitStringsChunkLength: 5,
                 stringArray: true,
-                stringArrayEncoding: ['rc4'], // 使用 RC4 编码
-                stringArrayIndexesType: [
-                    'hexadecimal-number'
-                ],
-                stringArrayRotate: true,
-                stringArrayShuffle: true,
-                stringArrayWrappersCount: 5,  // 增加 wrappers 数量
-                stringArrayWrappersChainedCalls: true,
-                stringArrayWrappersParametersMaxCount: 5, // 增加参数数量
-                stringArrayWrappersType: 'variable',
-                target: 'browser',
-                transformObjectKeys: true,
-                unicodeEscapeSequence: true,
+                stringArrayEncoding: [], // 关闭字符串数组编码
+                splitStrings: false, // 关闭字符串拆分
+                unicodeEscapeSequence: false, // 关闭unicode转义序列
                 ...options, // 允许在 vite.config.js 中覆盖某些选项
             };
 

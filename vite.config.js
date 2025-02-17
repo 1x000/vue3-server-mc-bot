@@ -11,7 +11,7 @@ export default defineConfig({
             //debugProtection: false, // 关闭 debug protection
         })
     ],
-    base: '/', // 根据你的部署情况修改
+    base: './', // 根据你的部署情况修改
     build: {
         target: 'es2015',
         sourcemap: false // 禁用 Source Maps
