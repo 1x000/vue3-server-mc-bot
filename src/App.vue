@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1 class="app-title">Minecraft 服务器监控系统</h1>
+    <h1 class="app-title">3C3U-BOT</h1>
     <minecraft-monitor />
   </div>
 </template>
